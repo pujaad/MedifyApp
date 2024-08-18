@@ -1,0 +1,25 @@
+.image{
+  
+  display:flex;
+ flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+  
+  
+
+}
+.image img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:90px;
+    padding:20px
+}
+.doctor img{
+position:absolute;
+right:0;
+top:0;
+height:300px;
+margin-right: 20px;
+}
