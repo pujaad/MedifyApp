@@ -20,6 +20,7 @@ const HomePage=()=>{
         <div className={Styles.doctor}>
             <img src="Assets/doctors.jpg"/>
         </div>
+       
        </>
     )
 }

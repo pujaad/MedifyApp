@@ -6,6 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import styles from "./LandingPageStyles.module.css";
 import BookingCenter from './BookingCentre';
 import HomePage from './HomePage';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 
 const LandingPage = () => {
@@ -66,6 +72,7 @@ const LandingPage = () => {
 
     const handleBooking = () => {
         setShowBookingCentre(true)
+       
     }
 
     return (
@@ -80,6 +87,7 @@ const LandingPage = () => {
                 </nav>
             </div>
             <HomePage medicalCentre={medicalCenters}/>
+           
             <div className={styles.select}>
                 <select id="state-select" value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                     <option value="">Select State</option>
@@ -96,7 +104,66 @@ const LandingPage = () => {
                 </select>
                 <button onClick={() => { handleSearch() }}>Search</button>
             </div>
-            <div>
+            <p style={{display: "flex", justifyContent: "center"}}>you may be looking for</p>
+            <div style={{display: "flex", justifyContent: "center",padding:"10px"}}>
+                <img src="Assets/pictures/Ambulance.svg"/>
+                <img src="Assets/pictures/Doctor.svg"/>
+                <img src="Assets/pictures/Drugstore.svg"/>
+                <img src="Assets/pictures/e.svg"/>
+                <img src="Assets/pictures/Hospital.svg"/>
+            </div>
+            {/* <div style={{display: "flex", justifyContent: "center",alignItems:"center"}}> */}
+            <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '20px 0',
+      }}
+    >
+      <Swiper
+      modules={[Pagination, Navigation]}
+        spaceBetween={50}
+        slidesPerView={2}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+      >
+        <SwiperSlide>
+          <img
+            src="Assets/pictures2/Group 10.svg"
+            alt="Group 10"
+            style={{ width: "50%",display: "flex", justifyContent:"center",alignItems:"center",marginLeft:"100px", marginRight:"100px"}}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="Assets/pictures2/Group 11.svg"
+            alt="Group 11"
+            style={{ width: '50%',display: "flex", justifyContent:"center",alignItems:"center",marginLeft:"100px" , marginRight:"100px"}}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="Assets/pictures2/Group 12.svg"
+            alt="Group 12"
+            style={{ width: '50%',display: "flex", justifyContent:"center",alignItems:"center",marginLeft:"100px",marginRight:"100px"}}
+          />
+        </SwiperSlide>
+        <div className="swiper-button-prev" />
+        <div className="swiper-button-next" />
+      </Swiper>
+    </div>
+
+
+
+
+{/* </div> */}
+            <div> 
                 {medicalCenters.length > 0 && (
                     <div style={{  border: "5px solid grey", color: "black", padding: "10px", backgroundColor: "lightblue" }}>
                         {medicalCenters.map((center) => (
@@ -105,7 +172,7 @@ const LandingPage = () => {
                                 <h2>{center["Hospital Name"]}</h2>
                                 <h3>{center.City}, {center.State}</h3>
                                 <p>{center.Address}</p>
-
+ 
 
 
 
