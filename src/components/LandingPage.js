@@ -21,6 +21,7 @@ const LandingPage = () => {
     const [selectedCity, setSelectedCity] = useState('');
     const [medicalCenters, setMedicalCenters] = useState([]);
     const [showBookingCentre, setShowBookingCentre] = useState(false)
+    const [showHospital,setShowHospital]=useState(true)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -72,7 +73,7 @@ const LandingPage = () => {
 
     const handleBooking = () => {
         setShowBookingCentre(true)
-       
+       setShowHospital(false)
     }
 
     return (
@@ -163,8 +164,12 @@ const LandingPage = () => {
 
 
 {/* </div> */}
+<div>
+
+
             <div> 
-                {medicalCenters.length > 0 && (
+               
+                {showHospital && medicalCenters.length > 0 && (
                     <div style={{  border: "5px solid grey", color: "black", padding: "10px", backgroundColor: "lightblue" }}>
                         {medicalCenters.map((center) => (
                             <div key={center["Provider ID"]} style={{ marginBottom: "10px" }}>
@@ -187,14 +192,16 @@ const LandingPage = () => {
                                 <button onClick={handleBooking}>Book Free Center Visit</button>
                             </div>
                         ))}
-
+                    
                     </div>
+                
 
                 )}
+                
                 {showBookingCentre && (
                     <BookingCenter medicalCentre={medicalCenters} />
                 )}
-
+</div>
             </div>
 
         </>

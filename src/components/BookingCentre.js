@@ -31,7 +31,7 @@ const BookingCenter = ({ medicalCentre }) => {
   ]
   const [selectedCentre,setSelectedCentre] = useState(null)
  const [bookings,setBookings]=useState([]);
- 
+ const [showCalendar,setShowCalendar]= useState(true)
   const handleTimeSelection=(time)=>{
       setSelectedTime(time)
   }
@@ -49,13 +49,15 @@ const handleCenterSelection =(center)=>{
       }
     }
     setBookings(prev => ([...prev,newBookings]))
-   
+   setShowCalendar(false)
   }
 }
   return (
 
-
+ 
     <Box>
+      {showCalendar ? (
+        <Box>
       <Box sx={{display:'flex',margin:"10px",alignItems: 'center', justifyContent: 'space-around', width: '100%' }}>
         <IconButton className="swiper-button-prev" sx={{ margin: '0 30px' }}>
           <ArrowBackIosIcon/>
@@ -120,10 +122,14 @@ const handleCenterSelection =(center)=>{
         ))}
 
       </Box>
-      {bookings.length>0 && (
+      </Box>
+ ):(
+      bookings.length>0 && 
         <Bookings bookings={bookings}/>
       )}
+    
     </Box>
+ 
   );
 };
 
